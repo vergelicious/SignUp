@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         val first = 1
         val min = 18
         val max = 60
-        val seekBar : SeekBar = findViewById(R.id.seekBarAge) as SeekBar
+        val seekBar : SeekBar = findViewById(R.id.seekBarAge)
         seekBar.setMax((max - min) / first)
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, i: Int, fromUser: Boolean) {
@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.txtViewAge).setText("$value")
             }
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                Toast.makeText(applicationContext,"Age: ${findViewById<TextView>(R.id.txtViewAge).text}",Toast.LENGTH_SHORT).show()
             }
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                Toast.makeText(applicationContext,"Age: ${findViewById<TextView>(R.id.txtViewAge).text}",Toast.LENGTH_SHORT).show()
             }
         })
         findViewById<Button>(R.id.btnNext).setOnClickListener{ toNextPage(
@@ -36,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     }
     private fun toNextPage(fname: String, lname: String, email: String, age: String) {
         val intent = Intent(this, NextPage::class.java)
-        intent.putExtra("firstName", fname)
-        intent.putExtra("lastName", lname)
+        intent.putExtra("fName", fname)
+        intent.putExtra("lName", lname)
         intent.putExtra("email", email)
         intent.putExtra("age", age)
         startActivity(intent)
